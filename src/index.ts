@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { routes } from "./routes";
 import "./socket";
 
 const app = express();
@@ -15,9 +16,7 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+routes(app);
 
 app.listen(8000, () => {
   console.log("listening to port 8000");
