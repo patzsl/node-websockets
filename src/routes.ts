@@ -7,6 +7,7 @@ import {
 } from "./controllers/auth.controller";
 import { AuthMiddleware } from "./middlewares/auth.middleware";
 import { Users } from "./controllers/user.controller";
+import { SendMessage } from "./controllers/message.controller";
 
 export const routes = (router: Router) => {
   router.post("/api/register", Register);
@@ -14,4 +15,5 @@ export const routes = (router: Router) => {
   router.get("/api/user", AuthMiddleware, GetUser);
   router.put("/api/user", AuthMiddleware, UpdateUser);
   router.get("/api/users", AuthMiddleware, Users);
+  router.post("/api/messages", AuthMiddleware, SendMessage);
 };
