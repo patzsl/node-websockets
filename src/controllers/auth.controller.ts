@@ -11,6 +11,13 @@ export const Register = async (req, res) => {
     });
   }
 
+  const existingUser = await User.findOne({ where: { email: body.email } });
+  if (existingUser) {
+    return res.status(400).send({
+      message: "Email already in use",
+    });
+  }
+
   const user = await User.save({
     ...body,
     password: await bcryptjs.hash(password, 10),
